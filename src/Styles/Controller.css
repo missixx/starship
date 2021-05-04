@@ -1,0 +1,24 @@
+.controller-container{
+height: 100px;
+width: 450px;
+border: 1px solid black;
+display: flex;
+}
+
+.left-block{
+    height: 100px;
+    width: 150px;
+    border: 1px solid black;
+}
+
+.middle-block{
+    height: 100px;
+    width: 150px;
+    border: 1px solid black;
+}
+
+.right-block{
+    height: 100px;
+    width: 150px;
+    border: 1px solid black;
+}
