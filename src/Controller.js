@@ -1,8 +1,8 @@
+import { connect } from 'react-redux'
 import './Styles/Controller.css'
 
-export default function Controller(props) {
+function Controller(props) {
 
-    
   const handleStart = () => {
     props.onStart()
   }
@@ -11,25 +11,42 @@ export default function Controller(props) {
     props.onStop()
   }
 
-  const handleUp = () =>{
-      
+  const handleUp = () => {
   }
 
-    return (
-        <div className='controller-container'>
-            <div className='left-block'>
-                <button>&#8592;</button>
-                <button onClick={handleUp}>&#8593;</button>
-                <button>&#8594;</button>
-                <button>&#8595;</button>
-            </div>
-            <div className='middle-block'>
-                <button onClick={handleStart}>Старт</button>
-                <button onClick={handleStop}>Стоп</button>
-            </div>
-            <div className='right-block'>
-            <button>Огонь</button>
-            </div>
-        </div>
-    )
+  const handleAccelerator = () => {
+    props.onAccelerate()
+  }
+
+  const handleDecelerator = () => {
+    props.onDecelerate()
+  }
+
+  return (
+    <div className='controller-container'>
+      <div className='left-block'>
+        <button>&#8592;</button>
+        <button onClick={handleUp}>&#8593;</button>
+        <button>&#8594;</button>
+        <button>&#8595;</button>
+      </div>
+      <div className='middle-block'>
+        <button onClick={handleStart}>Старт</button>
+        <button onClick={handleStop}>Стоп</button>
+      </div>
+      <div className='right-block'>
+        <button>Огонь</button>
+        <button onClick={handleAccelerator}>+</button>
+        <button onClick={handleDecelerator}>-</button>
+      </div>
+    </div>
+  )
 }
+
+export default connect(state => ({ state: state }), dispatch => ({
+  onStart: () => dispatch({ type: 'START' }),
+  onStop: () => dispatch({ type: 'STOP' }),
+  onAccelerate: () => dispatch({ type: 'ACCELERATE' }),
+  onDecelerate: () => dispatch({ type: 'DECELERATE' }),
+}))
+  (Controller)

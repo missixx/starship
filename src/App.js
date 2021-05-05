@@ -35,7 +35,7 @@ function App(props) {
   React.useEffect(() => {
     if (props.state.controller.isActive) {
       scroll.current.scrollLeft = scroll.current.scrollWidth
-      const timerId = setInterval(() => { autoAddGraph(1, 300) }, 10)
+      const timerId = setInterval(() => { autoAddGraph(1, 300) }, props.state.ship.speed)
       return () => { clearInterval(timerId) }
     }
   }
@@ -53,24 +53,19 @@ function App(props) {
       <div className='field'>
         <div className='graph-container' ref={scroll}>
           {mapedGraphs}
-          <Starship ship={props.state.ship}/>
+          <Starship ship={props.state.ship} />
         </div>
       </div>
       <input ref={textInput} />
       <button onClick={handleAdd}>Добавить</button>
-      {/* <button onClick={handleStart}>Старт</button> */}
-      {/* <button onClick={handleStop}>Стоп</button> */}
-      <Controller onStart={props.onStart} onStop={props.onStop}/>
+      <Controller onStart={props.onStart} onStop={props.onStop} />
+      <span>{props.state.ship.speed}</span>
     </div>
   );
 }
 
 export default connect(state => ({ state: state }), dispatch => ({
   onHandleAddGraph: (id, value) => dispatch({ type: 'ADD_GRAPH', payload: { id: +id, value: value } }),
-  onStart: () => dispatch({ type: 'START' }),
-  onStop: () => dispatch({ type: 'STOP' }),
   onDeleteGraph: () => dispatch({ type: 'DELETE_GRAPH' }),
 }))
   (App);
-
-
