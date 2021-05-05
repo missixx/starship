@@ -1,4 +1,5 @@
 import { connect } from 'react-redux'
+import shipReducer from './Reducers/shipReducer'
 import './Styles/Controller.css'
 
 function Controller(props) {
@@ -15,11 +16,15 @@ function Controller(props) {
   }
 
   const handleAccelerator = () => {
-    props.onAccelerate()
+    if (props.state.ship.speed > 2) {
+      props.onAccelerate()
+    }
   }
 
   const handleDecelerator = () => {
-    props.onDecelerate()
+    if(props.state.ship.speed < 27){
+      props.onDecelerate()
+    }
   }
 
   return (
