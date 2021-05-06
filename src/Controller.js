@@ -22,13 +22,27 @@ function Controller(props) {
   }
 
   const handleDecelerator = () => {
-    if(props.state.ship.speed < 27){
+    if (props.state.ship.speed < 27) {
       props.onDecelerate()
     }
   }
 
+  const handleKeyDown = (event) => {
+    switch (event.code) {
+      case 'KeyS':
+        return props.onDownMove();
+      case 'KeyW':
+        return props.onUpMove();
+      case 'KeyD':
+        return props.onAccelerate()
+      case 'KeyA':
+        return props.onDecelerate()
+      default: return
+    }
+  }
+
   return (
-    <div className='controller-container'>
+    <div className='controller-container' onKeyDown={handleKeyDown}>
       <div className='left-block'>
         <button>&#8592;</button>
         <button onClick={handleUp}>&#8593;</button>
@@ -41,7 +55,7 @@ function Controller(props) {
       </div>
       <div className='right-block'>
         <button>Огонь</button>
-        <button onClick={handleAccelerator}>+</button>
+        <button onClick={handleAccelerator} >+</button>
         <button onClick={handleDecelerator}>-</button>
       </div>
     </div>
@@ -53,5 +67,7 @@ export default connect(state => ({ state: state }), dispatch => ({
   onStop: () => dispatch({ type: 'STOP' }),
   onAccelerate: () => dispatch({ type: 'ACCELERATE' }),
   onDecelerate: () => dispatch({ type: 'DECELERATE' }),
+  onUpMove: () => dispatch({ type: 'UP_MOVE' }),
+  onDownMove: () => dispatch({ type: 'DOWN_MOVE' }),
 }))
   (Controller)

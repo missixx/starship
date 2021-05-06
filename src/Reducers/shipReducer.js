@@ -1,7 +1,7 @@
 
 const initialState = {
     speed: 27,
-    verticalValue: 150,
+    verticalValue: 125,
 }
 
 export default function shipReducer(state = initialState, action) {
@@ -10,6 +10,10 @@ export default function shipReducer(state = initialState, action) {
             return { ...state, speed: state.speed - 5 }
         case 'DECELERATE':
             return { ...state, speed: state.speed + 5 }
+        case 'DOWN_MOVE':
+            return { ...state, verticalValue: state.verticalValue + 120 }
+        case 'UP_MOVE':
+            return { ...state, verticalValue: state.verticalValue - 120 }
         default: return state
     }
 }

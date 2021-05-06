@@ -3,6 +3,9 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 
 import './Styles/App.css'
+import './Styles/Starship.css'
+import './Styles/Graph.css'
+
 import Graph from './Graph.js'
 import Starship from './Starship.js'
 import Controller from './Controller.js'

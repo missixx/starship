@@ -1,0 +1,19 @@
+.graph-container {
+    position: relative;
+    height: 300px;
+    width: 1000px;
+    display: flex;
+    align-items: flex-end;
+    overflow: hidden;
+    background-color: black;
+}
+
+.graph {
+    width: 15px;
+    /* background-color: green; */
+}
+.star {
+    height: 1px;
+    background-color: white;
+}
+
