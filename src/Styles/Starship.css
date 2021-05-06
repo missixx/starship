@@ -5,4 +5,5 @@
     content: '';
     background-image: url(../img/starship.png);
     position: absolute;
+    transition: all 0.5s;
 }

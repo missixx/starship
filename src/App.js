@@ -3,12 +3,13 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 
 import './Styles/App.css'
-import './Styles/Starship.css'
-import './Styles/Graph.css'
+
+
 
 import Graph from './Graph.js'
 import Starship from './Starship.js'
 import Controller from './Controller.js'
+import Interface from './Interface.js'
 
 
 function App(props) {
@@ -38,7 +39,7 @@ function App(props) {
   React.useEffect(() => {
     if (props.state.controller.isActive) {
       scroll.current.scrollLeft = scroll.current.scrollWidth
-      const timerId = setInterval(() => { autoAddGraph(1, 300) }, props.state.ship.speed)
+      const timerId = setInterval(() => { autoAddGraph(1, 300) }, 150 / props.state.ship.speed)
       return () => { clearInterval(timerId) }
     }
   }
@@ -55,6 +56,7 @@ function App(props) {
     <div className='app-container'>
       <div className='field'>
         <div className='graph-container' ref={scroll}>
+          <Interface />
           {mapedGraphs}
           <Starship ship={props.state.ship} />
         </div>

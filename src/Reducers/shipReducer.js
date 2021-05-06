@@ -1,19 +1,27 @@
 
 const initialState = {
-    speed: 27,
+    health: 100,
+    speed: 10,
     verticalValue: 125,
 }
 
 export default function shipReducer(state = initialState, action) {
     switch (action.type) {
         case 'ACCELERATE':
-            return { ...state, speed: state.speed - 5 }
+            if (state.speed < 30) { return { ...state, speed: state.speed + 10 } }
+            else { return state }
         case 'DECELERATE':
-            return { ...state, speed: state.speed + 5 }
-        case 'DOWN_MOVE':
-            return { ...state, verticalValue: state.verticalValue + 120 }
+            if (state.speed > 10) { return { ...state, speed: state.speed - 10 } }
+            else { return state }
         case 'UP_MOVE':
-            return { ...state, verticalValue: state.verticalValue - 120 }
+            if (state.verticalValue > 5) {
+                return { ...state, verticalValue: state.verticalValue - 120 }
+            } else { return state }
+        case 'DOWN_MOVE':
+            if (state.verticalValue < 245) {
+                return { ...state, verticalValue: state.verticalValue + 120 }
+            } else { return state }
+
         default: return state
     }
 }
