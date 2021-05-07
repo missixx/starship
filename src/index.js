@@ -7,7 +7,6 @@ import { Provider } from 'react-redux';
 import './index.css';
 
 import App from './App.js';
-// import Controller from './Controller.js'
 
 import reportWebVitals from './reportWebVitals';
 

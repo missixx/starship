@@ -1,6 +1,6 @@
 .interface-container {
     left: 20px;
-    width: 180px;
+    width: 300px;
     display: flex;
     justify-content: space-between;
     position: absolute;

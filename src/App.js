@@ -1,10 +1,7 @@
 import { connect } from "react-redux";
 import React from 'react';
-import ReactDOM from 'react-dom';
 
 import './Styles/App.css'
-
-
 
 import Graph from './Graph.js'
 import Starship from './Starship.js'
@@ -25,9 +22,6 @@ function App(props) {
     textInput.current.value = ''
   }
 
-
-
-
   const autoAddGraph = (min, max) => {
     min = Math.ceil(min);
     max = Math.floor(max);
@@ -36,14 +30,28 @@ function App(props) {
     props.onHandleAddGraph(id, randNumber)
   }
 
+  // React.useEffect(() => {
+  //   if (props.state.controller.isActive) {
+  //     const timer = setInterval(() => {
+  //       console.log('tick')
+  //     }, 16)
+  //     return () => { clearInterval(timer) }
+  //   }
+  // })
+
+
   React.useEffect(() => {
     if (props.state.controller.isActive) {
-      scroll.current.scrollLeft = scroll.current.scrollWidth
-      const timerId = setInterval(() => { autoAddGraph(1, 300) }, 150 / props.state.ship.speed)
+      scroll.current.scrollLeft = scroll.current.scrollWidth /* scroll - это реф*/
+      const timerId = setInterval(() => {
+        autoAddGraph(1, 300)
+        props.onChangeDistance()
+      }, 150 / props.state.ship.speed)
+      
       return () => { clearInterval(timerId) }
     }
-  }
-  )
+  })
+
 
   React.useEffect(() => {
     if (mapedGraphs.length > 67) {
@@ -72,5 +80,6 @@ function App(props) {
 export default connect(state => ({ state: state }), dispatch => ({
   onHandleAddGraph: (id, value) => dispatch({ type: 'ADD_GRAPH', payload: { id: +id, value: value } }),
   onDeleteGraph: () => dispatch({ type: 'DELETE_GRAPH' }),
+  onChangeDistance: () => dispatch({ type: 'CHANGE_DISTANCE' }),
 }))
   (App);

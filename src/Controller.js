@@ -1,5 +1,5 @@
 import { connect } from 'react-redux'
-import shipReducer from './Reducers/shipReducer'
+
 import './Styles/Controller.css'
 
 function Controller(props) {

@@ -2,6 +2,7 @@
 const initialState = {
     health: 100,
     speed: 10,
+    distance: 0,
     verticalValue: 125,
 }
 
@@ -21,7 +22,8 @@ export default function shipReducer(state = initialState, action) {
             if (state.verticalValue < 245) {
                 return { ...state, verticalValue: state.verticalValue + 120 }
             } else { return state }
-
+        case 'CHANGE_DISTANCE':
+            return { ...state, distance: state.distance + state.speed }
         default: return state
     }
 }
