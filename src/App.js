@@ -45,9 +45,9 @@ function App(props) {
       scroll.current.scrollLeft = scroll.current.scrollWidth /* scroll - это реф*/
       const timerId = setInterval(() => {
         autoAddGraph(1, 300)
-        props.onChangeDistance()
+
       }, 150 / props.state.ship.speed)
-      
+
       return () => { clearInterval(timerId) }
     }
   })
@@ -56,6 +56,7 @@ function App(props) {
   React.useEffect(() => {
     if (mapedGraphs.length > 67) {
       props.onDeleteGraph()
+      props.onChangeDistance() /* Добавил сюда, чтобы на первых секундах не набирал дистанцию*/
     }
   })
 
