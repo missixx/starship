@@ -19,3 +19,16 @@
 .pause_none{
     display: none;
 }
+
+.timer{
+    position: absolute;
+    bottom: 80px;
+    left: 320px;
+    font-size: 110px;
+    color: white;
+}
+
+.timer_none{
+    display: none;
+
+}
