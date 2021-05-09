@@ -13,12 +13,13 @@ function Interface(props) {
             <div>HEALTH:{props.state.ship.health}</div>
             <div>SPEED:{props.state.ship.speed}</div>
             <div>DISTANCE:{props.state.ship.distance}</div>
+            <div className={props.state.controller.isActive ? 'pause_none' : 'pause'}>PAUSE</div>
         </div>
     )
 }
 
 
 export default connect((state) => ({ state: state }), (dispatch) => ({
-    
+
 }))
     (Interface)

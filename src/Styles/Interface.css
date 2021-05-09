@@ -1,8 +1,21 @@
 .interface-container {
+    position: relative;
     left: 20px;
     width: 300px;
     display: flex;
     justify-content: space-between;
     position: absolute;
     color: white;
+}
+
+.pause{
+    position: absolute;
+    bottom: 80px;
+    left: 320px;
+    font-size: 110px;
+    color: white;
+}
+
+.pause_none{
+    display: none;
 }
