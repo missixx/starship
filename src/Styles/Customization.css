@@ -6,6 +6,15 @@
     z-index: 6;
 }
 
+.custom-container_none {
+    display: none;
+}
+
+.exit {
+    color: white;
+    font-size: 20px;
+}
+
 .custom-inner {
     position: absolute;
     top: 50%;
@@ -23,7 +32,7 @@
 }
 
 .custom-image {
-    content: '';
+    content: "";
     width: 50px;
     height: 50px;
     margin: 0 auto;

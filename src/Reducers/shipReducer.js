@@ -36,9 +36,18 @@ export default function shipReducer(state = initialState, action) {
         case 'CHANGE_DISTANCE':
             return { ...state, distance: state.distance + state.speed }
         case 'NEXT_SKIN':
-            return { ...state, currentSkinValue: state.currentSkinValue + 1 }
+            if (state.currentSkinValue < state.skins.length - 1) {
+                return { ...state, currentSkinValue: state.currentSkinValue + 1 }
+            } else {
+                return { ...state, currentSkinValue: 0 }
+            }
         case 'PREV_SKIN':
-            return { ...state, currentSkinValue: state.currentSkinValue - 1 }
+            if (state.currentSkinValue > 0) {
+                return { ...state, currentSkinValue: state.currentSkinValue - 1 }
+            } else {
+                return { ...state, currentSkinValue: state.skins.length - 1 }
+            }
+
         default: return state
 
     }
