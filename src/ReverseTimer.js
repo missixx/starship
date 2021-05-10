@@ -1,27 +1,21 @@
-import React from "react"
 import { connect } from "react-redux"
-import './Styles/Interface.css'
+import './Styles/ReverseTimer.css'
 
-function Interface(props) {
-    
+function ReverseTimer(props) {
 
-    React.useEffect(() => {
-        // props.onChangeDistance()
+    const timerAmount = props.state.interface.timerAmount
+    const timerCurrentAmount = props.state.interface.timerCurrentAmount
 
-    })
-
+    const handleStartTimer = () => {
+        props.onStartTimer(timerAmount.length, timerCurrentAmount)
+    }
 
     return (
-            <div className='interface-container'>
-                <div>HEALTH:{props.state.ship.health}</div>
-                <div>SPEED:{props.state.ship.speed}</div>
-                <div>DISTANCE:{props.state.ship.distance}</div>
-                <div className={props.state.controller.isActive ? 'pause_none' : 'pause'}>PAUSE</div>
-            </div>
-        
+        <div className={props.state.controller.isActive ? 'timer-container_none' : 'timer-container'}>
+            <div className='timer' onClick={handleStartTimer}>{timerAmount[timerCurrentAmount]}</div>
+        </div>
     )
 }
-
 
 export default connect((state) => ({ state: state }), (dispatch) => ({
     onStartTimer: (arrayLength, currentCount) => {
@@ -40,4 +34,4 @@ export default connect((state) => ({ state: state }), (dispatch) => ({
         dispatch(asyncStartTimer())
     }
 }))
-    (Interface)
+    (ReverseTimer)

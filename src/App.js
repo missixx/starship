@@ -7,6 +7,7 @@ import Graph from './Graph.js'
 import Starship from './Starship.js'
 import Controller from './Controller.js'
 import Interface from './Interface.js'
+import ReverseTimer from './ReverseTimer.js'
 
 
 function App(props) {
@@ -30,24 +31,12 @@ function App(props) {
     props.onHandleAddGraph(id, randNumber)
   }
 
-  // React.useEffect(() => {
-  //   if (props.state.controller.isActive) {
-  //     const timer = setInterval(() => {
-  //       console.log('tick')
-  //     }, 16)
-  //     return () => { clearInterval(timer) }
-  //   }
-  // })
-
-
   React.useEffect(() => {
     if (props.state.controller.isActive) {
       scroll.current.scrollLeft = scroll.current.scrollWidth /* scroll - это реф*/
       const timerId = setInterval(() => {
         autoAddGraph(1, 300)
-
       }, 150 / props.state.ship.speed)
-
       return () => { clearInterval(timerId) }
     }
   })
@@ -66,6 +55,7 @@ function App(props) {
       <div className='field'>
         <div className='graph-container' ref={scroll}>
           <Interface />
+          <ReverseTimer />
           {mapedGraphs}
           <Starship ship={props.state.ship} />
         </div>
