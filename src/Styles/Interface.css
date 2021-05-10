@@ -8,15 +8,3 @@
     color: white;
 }
 
-.pause {
-    position: absolute;
-    bottom: 80px;
-    left: 320px;
-    font-size: 110px;
-    color: white;
-}
-
-.pause_none {
-    display: none;
-}
-

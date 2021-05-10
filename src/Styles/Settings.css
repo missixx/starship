@@ -1,0 +1,33 @@
+.settings-container {
+    position: absolute;
+    /* position: relative; */
+    width: 1000px;
+    height: 300px;
+    z-index: 4;
+}
+
+.settings-container_none {
+    display: none;
+}
+
+.settings-inner {
+    width: 230px;
+    height: 50px;
+    position: absolute;
+    top: 70%;
+    margin-top: -0.625em;
+    left: 50%;
+    margin-left: -100px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.continue {
+    border: 1px solid black;
+    color: white;
+}
+
+.customization {
+    border: 1px solid black;
+    color: white;
+}

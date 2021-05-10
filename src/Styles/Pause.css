@@ -1,0 +1,14 @@
+
+.pause {
+    width: 330px;
+    position: absolute;
+    bottom: 80px;
+    left: 50%;
+    margin-left: -165px;
+    font-size: 110px;
+    color: white;
+}
+
+.pause_none {
+    display: none;
+}

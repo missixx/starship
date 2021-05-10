@@ -4,6 +4,17 @@ const initialState = {
     speed: 10,
     distance: 0,
     verticalValue: 125,
+    currentSkinValue: 0,
+    skins: [
+        {
+            name: 'first',
+            url: 'url(' + '/static/media/starship.e8f799b9.png' + ')'
+        },
+        {
+            name: 'second',
+            url: 'url(' + '/static/media/starship1.99ddddb9.png' + ')'
+        }
+    ]
 }
 
 export default function shipReducer(state = initialState, action) {
@@ -24,6 +35,11 @@ export default function shipReducer(state = initialState, action) {
             } else { return state }
         case 'CHANGE_DISTANCE':
             return { ...state, distance: state.distance + state.speed }
+        case 'NEXT_SKIN':
+            return { ...state, currentSkinValue: state.currentSkinValue + 1 }
+        case 'PREV_SKIN':
+            return { ...state, currentSkinValue: state.currentSkinValue - 1 }
         default: return state
+
     }
 }

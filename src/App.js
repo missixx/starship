@@ -8,6 +8,9 @@ import Starship from './Starship.js'
 import Controller from './Controller.js'
 import Interface from './Interface.js'
 import ReverseTimer from './ReverseTimer.js'
+import Settings from './Settings.js'
+import Pause from './Pause.js'
+import Customization from './Customization.js'
 
 
 function App(props) {
@@ -55,7 +58,10 @@ function App(props) {
       <div className='field'>
         <div className='graph-container' ref={scroll}>
           <Interface />
+          <Pause />
           <ReverseTimer />
+          <Settings />
+          <Customization />
           {mapedGraphs}
           <Starship ship={props.state.ship} />
         </div>
