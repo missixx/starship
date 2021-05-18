@@ -1,5 +1,7 @@
 
 const initialState = {
+    ////// временно подержу массив здесь
+    generatePositionArray: [{ top: 10, right: 0 }, { top: 125, right: 0 }, { top: 245, right: 0 }],
     health: 100,
     distance: 0,
     top: 125,
@@ -25,14 +27,13 @@ export default function shipReducer(state = initialState, action) {
         // case 'DECELERATE':
         //     if (state.speed > 10) { return { ...state, speed: state.speed - 10 } }
         //     else { return state }
+
         case 'UP_MOVE':
-            if (state.top > 5) {
-                return { ...state, top: state.top - 120 }
-            } else { return state }
+            return { ...state, top: 10 }
+        case 'MIDDLE_MOVE':
+            return { ...state, top: 125 }
         case 'DOWN_MOVE':
-            if (state.verticalValue < 245) {
-                return { ...state, verticalValue: state.verticalValue + 120 }
-            } else { return state }
+            return { ...state, top: 250 }
         case 'CHANGE_DISTANCE':
             return { ...state, distance: state.distance + 10 }
         case 'NEXT_SKIN':

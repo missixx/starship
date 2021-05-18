@@ -21,22 +21,47 @@ function App(props) {
   const scroll = React.createRef()
 
   const mapedGraphs = props.state.graphs.map(item => <Graph key={item.id} item={item} />)
+  const mapedAsteroids = props.state.asteroid.map(item => <Asteroid key={item.id} item={item} />)
 
 
-  const collisionCheck = (enemy, ship) => {
-    const enemyX2 = enemy.right
-    const enemyX1 = enemyX2 + 50
-    const enemyY2 = enemy.top
-    const enemyY1 = enemyY2 + 50
-    const shipX2 = ship.right
-    const shipX1 = shipX2 + 200
-    const shipY2 = ship.top
-    const shipY1 = shipY2 + 50
+  const autoPilot = () => {
+    // switch (props.state.ship.top) {
+    //   // case 10:
+    //   //   props.onMiddleMove()
+    //   case 125:
+    //     props.onDownMove()
+    //   case 250:
+    //     console.log(props.state.ship.top);
 
-    if ((enemyX1 > shipX2) && (enemyX2 < shipX1) && (enemyY1 > shipY2) && (enemyY2 < shipY1)) {
-      props.onUpMove()
+    //     props.onUpMove()
+    // }
+    const randomFunc = [props.onDownMove, props.onUpMove]
+
+    if (props.state.ship.top === 10) {
+      props.onMiddleMove()
+    } else if (props.state.ship.top === 125) {
+      // const randomNumber = 
+      randomFunc[generateRandomNumber(0, 2)]()
+    } else if (props.state.ship.top === 250) {
+      props.onMiddleMove()
     }
+  }
 
+  const collisionCheck = (enemyArray, ship) => {
+    enemyArray.forEach((item) => {
+      const enemyX2 = item.right
+      const enemyX1 = enemyX2 + 50
+      const enemyY2 = item.top
+      const enemyY1 = enemyY2 + 50
+      const shipX2 = ship.right
+      const shipX1 = shipX2 + 200
+      const shipY2 = ship.top
+      const shipY1 = shipY2 + 50
+
+      if ((enemyX1 > shipX2) && (enemyX2 < shipX1) && (enemyY1 > shipY2) && (enemyY2 < shipY1)) {
+        autoPilot();
+      }
+    })
   }
 
   const handleAdd = () => {
@@ -45,17 +70,23 @@ function App(props) {
     textInput.current.value = ''
   }
 
-  const autoAddGraph = (min, max) => {
+  const generateRandomNumber = (min, max) => {
     min = Math.ceil(min);
     max = Math.floor(max);
-    const randNumber = Math.floor(Math.random() * (max - min)) + min; //Максимум не включается, минимум включается
+    return Math.floor(Math.random() * (max - min)) + min; //Максимум не включается, минимум включается
+  }
+
+  const autoAddGraph = () => {
     const id = Date.now().toString()
-    props.onHandleAddGraph(id, randNumber)
+    props.onHandleAddGraph(id, generateRandomNumber(1, 300))
   }
 
   const generateEnemy = (value) => {
-    if ((value % 500 === 0) && (value !== 0)) {
-      console.log('вызов врага');
+    if ((value % 750 === 0) && (value !== 0)) {
+      const id = Date.now().toString()
+      const value = generateRandomNumber(0, 3)
+      const payload = props.state.ship.generatePositionArray[value]
+      props.onEnemyAdd(id, payload)
     }
   }
 
@@ -64,7 +95,7 @@ function App(props) {
       scroll.current.scrollLeft = scroll.current.scrollWidth /* scroll - это реф*/
       const timerId = setInterval(() => {
 
-        autoAddGraph(1, 300);
+        autoAddGraph();
         props.onAsteroidMove();
         collisionCheck(props.state.asteroid, props.state.ship);
         generateEnemy(props.state.ship.distance);
@@ -87,7 +118,7 @@ function App(props) {
     <div className='app-container'>
       <div className='field'>
         <div className='graph-container' ref={scroll}>
-          <Asteroid />
+          {mapedAsteroids}
           <Interface />
           <Pause />
           {/* <EnemyGenerator/> */}
@@ -111,7 +142,9 @@ export default connect(state => ({ state: state }), dispatch => ({
   onDeleteGraph: () => dispatch({ type: 'DELETE_GRAPH' }),
   onChangeDistance: () => dispatch({ type: 'CHANGE_DISTANCE' }),
   onAsteroidMove: () => dispatch({ type: 'ASTEROID_MOVE' }),
+  onEnemyAdd: (id, payload) => dispatch({ type: 'ENEMY_ADD', payload: { id: +id, ...payload } }),
   onUpMove: () => dispatch({ type: 'UP_MOVE' }),
+  onMiddleMove: () => dispatch({ type: 'MIDDLE_MOVE' }),
   onDownMove: () => dispatch({ type: 'DOWN_MOVE' }),
 }))
   (App);

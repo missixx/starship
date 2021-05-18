@@ -12,7 +12,7 @@ function Asteroid(props) {
     // })
 
     return (
-        <div className='asteroid' style={{ right: props.state.asteroid.right + 'px', top: props.state.asteroid.top + 'px' }}>
+        <div className='asteroid' style={{ right: props.item.right + 'px', top: props.item.top + 'px' }}>
         </div>
     )
 }
