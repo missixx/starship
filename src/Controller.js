@@ -65,8 +65,8 @@ function Controller(props) {
 export default connect(state => ({ state: state }), dispatch => ({
   onStart: () => dispatch({ type: 'START' }),
   onStop: () => dispatch({ type: 'STOP' }),
-  onAccelerate: () => dispatch({ type: 'ACCELERATE' }),
-  onDecelerate: () => dispatch({ type: 'DECELERATE' }),
+  // onAccelerate: () => dispatch({ type: 'ACCELERATE' }),
+  // onDecelerate: () => dispatch({ type: 'DECELERATE' }),
   onUpMove: () => dispatch({ type: 'UP_MOVE' }),
   onDownMove: () => dispatch({ type: 'DOWN_MOVE' }),
 }))

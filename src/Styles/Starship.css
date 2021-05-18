@@ -1,10 +1,18 @@
-.starship{
-    left: 30px;
+.starship {
     width: 50px;
     height: 50px;
-    content: '';
-    /* background-image: url(../img/starship1.png); */
-    position: absolute;
+    content: "";
+    /* background-image: url(../img/starship.png); */
     transition: all 0.5s;
-    
+    border: 1px solid white;
 }
+
+.starship-collider{
+    position: absolute;
+    width: 200px;
+    height: 50px;
+    transition: all 0.2s;
+    border: 1px solid green;
+
+}
+

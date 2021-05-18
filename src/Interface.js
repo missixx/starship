@@ -5,18 +5,19 @@ import './Styles/Interface.css'
 function Interface(props) {
     
 
-    React.useEffect(() => {
-        // props.onChangeDistance()
+    // React.useEffect(() => {
+    //     // props.onChangeDistance()
 
-    })
+    // })
 
 
     return (
             <div className='interface-container'>
+                <div className='pause-btn' onClick={props.onStop}>| |</div>
+                <div className='status'>
                 <div>HEALTH:{props.state.ship.health}</div>
-                <div>SPEED:{props.state.ship.speed}</div>
                 <div>DISTANCE:{props.state.ship.distance}</div>
-     
+                </div>
             </div>
         
     )
@@ -38,6 +39,7 @@ export default connect((state) => ({ state: state }), (dispatch) => ({
             }
         }
         dispatch(asyncStartTimer())
-    }
+    },
+    onStop: () => dispatch({ type: 'STOP' }),
 }))
     (Interface)

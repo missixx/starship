@@ -10,13 +10,15 @@ function Customization(props) {
             <div className='exit' onClick={props.onExitCustomization}>EXIT</div>
             <div className='custom-inner'>
                 <div className='custom-name'>{props.state.ship.skins[currentSkinValue].name}</div>
-                <div className='custom-image' style={{ backgroundImage: skin[currentSkinValue].url }}></div>
+                <div className='custom-image' style={{backgroundImage: skin[currentSkinValue].url }}></div>
                 <button className='left-arrow' onClick={props.onChangePrevSkin}>&#8249;</button>
                 <button className='right-arrow' onClick={props.onChangeNextSkin}>&#8250;</button>
             </div>
         </div>
     )
 }
+
+// 
 
 export default connect((state) => ({ state: state }), (dispatch) => ({
     onChangeNextSkin: () => dispatch({ type: 'NEXT_SKIN' }),

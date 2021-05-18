@@ -16,6 +16,7 @@ import graphsReducer from './Reducers/graphsReducer.js'
 import controllerReducer from './Reducers/controllerReducer.js'
 import shipReducer from './Reducers/shipReducer'
 import interfaceReducer from './Reducers/interfaceReducer.js'
+import AsteroidReducer from './Reducers/asteroidReducer.js'
 
 
 
@@ -24,7 +25,8 @@ const rootReducer = combineReducers({
   graphs: graphsReducer,
   controller: controllerReducer,
   ship: shipReducer,
-  interface: interfaceReducer
+  interface: interfaceReducer,
+  asteroid: AsteroidReducer
 })
 
 const store = createStore(rootReducer, composeWithDevTools(applyMiddleware(thunk)))
