@@ -4,17 +4,6 @@ import './Styles/Controller.css'
 
 function Controller(props) {
 
-  const handleStart = () => {
-    props.onStart()
-  }
-
-  const handleStop = () => {
-    props.onStop()
-  }
-
-  const handleUp = () => {
-  }
-
   const handleAccelerator = () => {
     if (props.state.ship.speed > 2) {
       props.onAccelerate()
@@ -45,13 +34,13 @@ function Controller(props) {
     <div className='controller-container' onKeyDown={handleKeyDown}>
       <div className='left-block'>
         <button>&#8592;</button>
-        <button onClick={handleUp}>&#8593;</button>
+        <button>&#8593;</button>
         <button>&#8594;</button>
         <button>&#8595;</button>
       </div>
       <div className='middle-block'>
-        <button onClick={handleStart}>Старт</button>
-        <button onClick={handleStop}>Стоп</button>
+        <button onClick={props.onStart}>Старт</button>
+        <button onClick={props.onStop}>Стоп</button>
       </div>
       <div className='right-block'>
         <button>Огонь</button>

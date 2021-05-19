@@ -37,12 +37,12 @@ function App(props) {
     // }
     const randomFunc = [props.onDownMove, props.onUpMove]
 
-    if (props.state.ship.top === 10) {
+    if (props.state.ship.top === 30) {
       props.onMiddleMove()
-    } else if (props.state.ship.top === 125) {
+    } else if (props.state.ship.top === 110) {
       // const randomNumber = 
       randomFunc[generateRandomNumber(0, 2)]()
-    } else if (props.state.ship.top === 250) {
+    } else if (props.state.ship.top === 190) {
       props.onMiddleMove()
     }
   }
@@ -50,13 +50,13 @@ function App(props) {
   const collisionCheck = (enemyArray, ship) => {
     enemyArray.forEach((item) => {
       const enemyX2 = item.right
-      const enemyX1 = enemyX2 + 50
+      const enemyX1 = enemyX2 + 80
       const enemyY2 = item.top
-      const enemyY1 = enemyY2 + 50
+      const enemyY1 = enemyY2 + 80
       const shipX2 = ship.right
       const shipX1 = shipX2 + 200
       const shipY2 = ship.top
-      const shipY1 = shipY2 + 50
+      const shipY1 = shipY2 + 80
 
       if ((enemyX1 > shipX2) && (enemyX2 < shipX1) && (enemyY1 > shipY2) && (enemyY2 < shipY1)) {
         autoPilot();
@@ -113,6 +113,12 @@ function App(props) {
     }
   })
 
+  React.useEffect(() => {
+    if (props.state.asteroid.length > 2) {
+      props.onDeleteAsteroid()
+    }
+  })
+
 
   return (
     <div className='app-container'>
@@ -124,7 +130,7 @@ function App(props) {
           {/* <EnemyGenerator/> */}
           {/* <ReverseTimer /> */}
           <Settings />
-          <Customization />
+          {/* <Customization /> */}
           {mapedGraphs}
           <Starship ship={props.state.ship} />
         </div>
@@ -142,6 +148,7 @@ export default connect(state => ({ state: state }), dispatch => ({
   onDeleteGraph: () => dispatch({ type: 'DELETE_GRAPH' }),
   onChangeDistance: () => dispatch({ type: 'CHANGE_DISTANCE' }),
   onAsteroidMove: () => dispatch({ type: 'ASTEROID_MOVE' }),
+  onDeleteAsteroid: () => dispatch({ type: 'ASTEROID_DELETE' }),
   onEnemyAdd: (id, payload) => dispatch({ type: 'ENEMY_ADD', payload: { id: +id, ...payload } }),
   onUpMove: () => dispatch({ type: 'UP_MOVE' }),
   onMiddleMove: () => dispatch({ type: 'MIDDLE_MOVE' }),

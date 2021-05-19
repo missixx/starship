@@ -1,21 +1,21 @@
 
 const initialState = {
     ////// временно подержу массив здесь
-    generatePositionArray: [{ top: 10, right: 0 }, { top: 125, right: 0 }, { top: 245, right: 0 }],
+    generatePositionArray: [{ top: 30, right: 0 }, { top: 110, right: 0 }, { top: 190, right: 0 }],
     health: 100,
     distance: 0,
-    top: 125,
+    top: 110,
     right: 750,
     currentSkinValue: 0,
     skins: [
-        {
-            name: 'DESTROYER',
-            url: 'url(' + '/static/media/starship.e8f799b9.png' + ')'
-        },
-        {
-            name: 'ANIHILATOR',
-            url: 'url(' + '/static/media/starship1.99ddddb9.png' + ')'
-        }
+        // {
+        //     name: 'DESTROYER',
+        //     url: 'url(' + '/static/media/starship.e8f799b9.png' + ')'
+        // },
+        // {
+        //     name: 'ANIHILATOR',
+        //     url: 'url(' + '/static/media/starship1.99ddddb9.png' + ')'
+        // }
     ]
 }
 
@@ -29,11 +29,11 @@ export default function shipReducer(state = initialState, action) {
         //     else { return state }
 
         case 'UP_MOVE':
-            return { ...state, top: 10 }
+            return { ...state, top: 30 }
         case 'MIDDLE_MOVE':
-            return { ...state, top: 125 }
+            return { ...state, top: 110 }
         case 'DOWN_MOVE':
-            return { ...state, top: 250 }
+            return { ...state, top: 190 }
         case 'CHANGE_DISTANCE':
             return { ...state, distance: state.distance + 10 }
         case 'NEXT_SKIN':
