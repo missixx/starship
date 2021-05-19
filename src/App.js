@@ -4,43 +4,33 @@ import React from 'react';
 import './Styles/App.css'
 
 import Graph from './Graph.js'
-import Starship from './Starship.js'
-import Controller from './Controller.js'
+import Ship from './Ship.js'
+// import Controller from './Controller.js'
 import Interface from './Interface.js'
 // import EnemyGenerator from './EnemyGenerator.js'
 // import ReverseTimer from './ReverseTimer.js'
 import Settings from './Settings.js'
 import Pause from './Pause.js'
-import Customization from './Customization.js'
+// import Customization from './Customization.js'
 import Asteroid from './Asteroid.js'
 
 
 function App(props) {
 
-  const textInput = React.createRef()
   const scroll = React.createRef()
+/// чтобы окно двигалось вперёд, мы получает реф скрола, и каждый рендер двигаем его 
 
   const mapedGraphs = props.state.graphs.map(item => <Graph key={item.id} item={item} />)
   const mapedAsteroids = props.state.asteroid.map(item => <Asteroid key={item.id} item={item} />)
 
 
   const autoPilot = () => {
-    // switch (props.state.ship.top) {
-    //   // case 10:
-    //   //   props.onMiddleMove()
-    //   case 125:
-    //     props.onDownMove()
-    //   case 250:
-    //     console.log(props.state.ship.top);
-
-    //     props.onUpMove()
-    // }
+   //// switch почему то не сработал поэтому if
     const randomFunc = [props.onDownMove, props.onUpMove]
 
     if (props.state.ship.top === 30) {
       props.onMiddleMove()
     } else if (props.state.ship.top === 110) {
-      // const randomNumber = 
       randomFunc[generateRandomNumber(0, 2)]()
     } else if (props.state.ship.top === 190) {
       props.onMiddleMove()
@@ -48,6 +38,9 @@ function App(props) {
   }
 
   const collisionCheck = (enemyArray, ship) => {
+    //// на основе свойств в стэйте top и right высчитываются координаты каждого элемента и попарно сравниваются
+    /// с ship на столкновение
+    /// getBundingClientRect() применить невозможно из за того что данные из рефов уже поступают после инициализации
     enemyArray.forEach((item) => {
       const enemyX2 = item.right
       const enemyX1 = enemyX2 + 80
@@ -64,12 +57,6 @@ function App(props) {
     })
   }
 
-  const handleAdd = () => {
-    const id = Date.now().toString()
-    props.onHandleAddGraph(id, textInput.current.value)
-    textInput.current.value = ''
-  }
-
   const generateRandomNumber = (min, max) => {
     min = Math.ceil(min);
     max = Math.floor(max);
@@ -77,11 +64,15 @@ function App(props) {
   }
 
   const autoAddGraph = () => {
+  //// функция, которая вызывает экш и передаёт в него id и создаёт рандомно высоту блоков(в нашем случае это "звезды")
     const id = Date.now().toString()
-    props.onHandleAddGraph(id, generateRandomNumber(1, 300))
+    props.onAddGraph(id, generateRandomNumber(1, 300))
   }
 
   const generateEnemy = (value) => {
+    //// функция создаёт enemy в рандомном месте из заданного массива generatePositionArray[value], временно поместил его в ship.
+    //// Создать отдельный useEffect со своим setTimeout не получилось ибо он не успевает запускаться из-за быстрого setTimeout в
+    /// App.js поэтому пришлось привязать генерацию астеройдов к пройденному расстоянию
     if ((value % 750 === 0) && (value !== 0)) {
       const id = Date.now().toString()
       const value = generateRandomNumber(0, 3)
@@ -91,6 +82,8 @@ function App(props) {
   }
 
   React.useEffect(() => {
+    //// этот хук двигает скрол и каждые 10милисек вызывает функции для генерации "звёзд", движение астеройдов, проверку столкновений, и 
+    //// генерирует enemy
     if (props.state.controller.isActive) {
       scroll.current.scrollLeft = scroll.current.scrollWidth /* scroll - это реф*/
       const timerId = setInterval(() => {
@@ -107,6 +100,7 @@ function App(props) {
 
 
   React.useEffect(() => {
+    //// удаляет лишние блоки(звёзды)
     if (mapedGraphs.length > 67) {
       props.onDeleteGraph()
       props.onChangeDistance() /* Добавил сюда, чтобы на первых секундах не набирал дистанцию*/
@@ -114,6 +108,7 @@ function App(props) {
   })
 
   React.useEffect(() => {
+      //// удаляет лишние астеройды
     if (props.state.asteroid.length > 2) {
       props.onDeleteAsteroid()
     }
@@ -127,24 +122,20 @@ function App(props) {
           {mapedAsteroids}
           <Interface />
           <Pause />
-          {/* <EnemyGenerator/> */}
-          {/* <ReverseTimer /> */}
+          {/* <ReverseTimer /> в разработке */}
           <Settings />
-          {/* <Customization /> */}
+          {/* <Customization /> в разработке*/}
           {mapedGraphs}
-          <Starship ship={props.state.ship} />
+          <Ship ship={props.state.ship} />
         </div>
       </div>
-      <input ref={textInput} />
-      <button onClick={handleAdd}>Добавить</button>
-      <Controller onStart={props.onStart} onStop={props.onStop} />
-      <span>{props.state.ship.speed}</span>
+      {/* <Controller onStart={props.onStart} onStop={props.onStop} в разработке/> */}
     </div>
   );
 }
 
 export default connect(state => ({ state: state }), dispatch => ({
-  onHandleAddGraph: (id, value) => dispatch({ type: 'ADD_GRAPH', payload: { id: +id, value: value } }),
+  onAddGraph: (id, value) => dispatch({ type: 'ADD_GRAPH', payload: { id: +id, value: value } }),
   onDeleteGraph: () => dispatch({ type: 'DELETE_GRAPH' }),
   onChangeDistance: () => dispatch({ type: 'CHANGE_DISTANCE' }),
   onAsteroidMove: () => dispatch({ type: 'ASTEROID_MOVE' }),

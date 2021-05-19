@@ -6,8 +6,6 @@ const initialState = [
     },
 ]
 
-
-
 export default function AsteroidReducer(state = initialState, action) {
 
     switch (action.type) {

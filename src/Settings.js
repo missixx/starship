@@ -6,7 +6,7 @@ function Settings(props) {
         <div className={props.state.controller.isActive ? 'settings-container_none' : 'settings-container'}>
             <div className='settings-inner'>
                 <div className='continue' onClick={props.onStart}>Продолжить</div>
-                <div className='customization' onClick={props.onEnterCustomization}>Кастомизация</div>
+                <div className='customization' onClick={props.onEnterCustomization}>Кастомизация(В разработке)</div>
             </div>
         </div>
     )

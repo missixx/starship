@@ -1,7 +1,7 @@
 import { connect } from 'react-redux'
-import './Styles/Starship.css'
+import './Styles/Ship.css'
 
-function Starship(props) {
+function Ship(props) {
     const currentSkinValue = props.ship.currentSkinValue
     return (
         <div className='starship-collider' style={{ top: props.state.ship.top + 'px', right: props.state.ship.right + 'px' }}>
@@ -15,5 +15,5 @@ function Starship(props) {
 export default connect(state => ({ state: state }), dispatch => ({
 
 }))
-    (Starship)
+    (Ship)
 

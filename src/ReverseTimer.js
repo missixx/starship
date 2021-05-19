@@ -17,6 +17,7 @@ function ReverseTimer(props) {
     )
 }
 
+
 export default connect((state) => ({ state: state }), (dispatch) => ({
     onStartTimer: (arrayLength, currentCount) => {
         const asyncStartTimer = () => {

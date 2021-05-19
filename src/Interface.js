@@ -3,7 +3,7 @@ import { connect } from "react-redux"
 import './Styles/Interface.css'
 
 function Interface(props) {
-    
+
 
     // React.useEffect(() => {
     //     // props.onChangeDistance()
@@ -12,14 +12,13 @@ function Interface(props) {
 
 
     return (
-            <div className='interface-container'>
-                <div className='pause-btn' onClick={props.onStop}>| |</div>
-                <div className='status'>
-                <div>HEALTH:{props.state.ship.health}</div>
-                <div>DISTANCE:{props.state.ship.distance}</div>
-                </div>
+        <div className='interface-container'>
+            <div className='pause-btn' onClick={props.onStop}>| |</div>
+            <div className='distance-block'>
+                <div className='distance-elem'>DISTANCE:{props.state.ship.distance}</div>
             </div>
-        
+        </div>
+
     )
 }
 
