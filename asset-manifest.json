@@ -1,0 +1,24 @@
+{
+  "files": {
+    "main.css": "/starship/static/css/main.837512f7.chunk.css",
+    "main.js": "/starship/static/js/main.bc42ea76.chunk.js",
+    "main.js.map": "/starship/static/js/main.bc42ea76.chunk.js.map",
+    "runtime-main.js": "/starship/static/js/runtime-main.0cb05e04.js",
+    "runtime-main.js.map": "/starship/static/js/runtime-main.0cb05e04.js.map",
+    "static/js/2.ed94725f.chunk.js": "/starship/static/js/2.ed94725f.chunk.js",
+    "static/js/2.ed94725f.chunk.js.map": "/starship/static/js/2.ed94725f.chunk.js.map",
+    "static/js/3.3801cfd0.chunk.js": "/starship/static/js/3.3801cfd0.chunk.js",
+    "static/js/3.3801cfd0.chunk.js.map": "/starship/static/js/3.3801cfd0.chunk.js.map",
+    "index.html": "/starship/index.html",
+    "static/css/main.837512f7.chunk.css.map": "/starship/static/css/main.837512f7.chunk.css.map",
+    "static/js/2.ed94725f.chunk.js.LICENSE.txt": "/starship/static/js/2.ed94725f.chunk.js.LICENSE.txt",
+    "static/media/Asteroid.css": "/starship/static/media/asteroid.cdcfa187.png",
+    "static/media/Ship.css": "/starship/static/media/starship2.c58bff38.png"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.0cb05e04.js",
+    "static/js/2.ed94725f.chunk.js",
+    "static/css/main.837512f7.chunk.css",
+    "static/js/main.bc42ea76.chunk.js"
+  ]
+}
