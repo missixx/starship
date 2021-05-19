@@ -1,9 +1,9 @@
 const initialState = [
-    {
-        id: 0,
-        top: 110,
-        right: 0
-    },
+    // {
+    //     id: 0,
+    //     top: 110,
+    //     right: 0
+    // },
 ]
 
 export default function AsteroidReducer(state = initialState, action) {

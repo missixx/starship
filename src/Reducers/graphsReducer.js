@@ -1,16 +1,16 @@
 const initialState = [
-    {
-      id: 0,
-      value: 10
-    },
-    {
-      id: 1,
-      value: 49
-    },
-    {
-      id: 2,
-      value: 76
-    },
+    // {
+    //   id: 0,
+    //   value: 10
+    // },
+    // {
+    //   id: 1,
+    //   value: 49
+    // },
+    // {
+    //   id: 2,
+    //   value: 76
+    // },
   ]
   
   export default function graphsReducer(state = initialState, action) {

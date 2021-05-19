@@ -1,5 +1,4 @@
 import React from 'react'
-import { connect } from 'react-redux'
 import './Styles/Asteroid.css'
 
 export default function Asteroid(props) {

@@ -4,13 +4,6 @@ import './Styles/Interface.css'
 
 function Interface(props) {
 
-
-    // React.useEffect(() => {
-    //     // props.onChangeDistance()
-
-    // })
-
-
     return (
         <div className='interface-container'>
             <div className='pause-btn' onClick={props.onStop}>| |</div>
@@ -24,21 +17,22 @@ function Interface(props) {
 
 
 export default connect((state) => ({ state: state }), (dispatch) => ({
-    onStartTimer: (arrayLength, currentCount) => {
-        const asyncStartTimer = () => {
-            return dispatch => {
-                setTimeout(() => {
-                    if (currentCount < arrayLength) {
-                        dispatch({ type: 'START_TIMER' })
-                        const timerID = setTimeout(dispatch(asyncStartTimer()), 1000, currentCount++)
-                    } else {
-                        dispatch({ type: 'START' })
-                    }
-                }, 1000);
-            }
-        }
-        dispatch(asyncStartTimer())
-    },
+    // попытка создать таймер обратного отсчёта с использованием асинхронности, он работает, но пока юзать не буду
+    // onStartTimer: (arrayLength, currentCount) => {
+    //     const asyncStartTimer = () => {
+    //         return dispatch => {
+    //             setTimeout(() => {
+    //                 if (currentCount < arrayLength) {
+    //                     dispatch({ type: 'START_TIMER' })
+    //                     const timerID = setTimeout(dispatch(asyncStartTimer()), 1000, currentCount++)
+    //                 } else {
+    //                     dispatch({ type: 'START' })
+    //                 }
+    //             }, 1000);
+    //         }
+    //     }
+    //     dispatch(asyncStartTimer())
+    // },
     onStop: () => dispatch({ type: 'STOP' }),
 }))
     (Interface)

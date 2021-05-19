@@ -9,6 +9,6 @@ export default function interfaceReducer(state = initialState, action) {
     switch (action.type) {
         case 'START_TIMER':
             return { ...state, timerCurrentAmount: state.timerCurrentAmount + 1 }
+        default: return state
     }
-    return state
 }

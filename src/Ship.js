@@ -2,7 +2,7 @@ import { connect } from 'react-redux'
 import './Styles/Ship.css'
 
 function Ship(props) {
-    const currentSkinValue = props.ship.currentSkinValue
+    // const currentSkinValue = props.ship.currentSkinValue
     return (
         <div className='starship-collider' style={{ top: props.state.ship.top + 'px', right: props.state.ship.right + 'px' }}>
             <div className='starship'></div>
@@ -11,6 +11,7 @@ function Ship(props) {
 }
 
 // style={{ backgroundImage: props.state.ship.skins[currentSkinValue].url }}
+// инлайновый стиль для customization
 
 export default connect(state => ({ state: state }), dispatch => ({
 
